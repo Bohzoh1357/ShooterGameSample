@@ -138,9 +138,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e285f8d7fe39741983ea945be53354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeathParticlesPrefab: {fileID: 0}
+  DeathParticlesPrefab: {fileID: 554173320182625207, guid: 7366e322e1df494488f53ce210949049, type: 3}
   ShouldDestroyOnDeath: 1
   _HealthPoints: 5
+  HurtParticlesPrefab: {fileID: 533162393586154299, guid: 49a40ccbb53a3dd4f85adc2e97ddf212, type: 3}
 --- !u!1 &601267929545769742
 GameObject:
   m_ObjectHideFlags: 0

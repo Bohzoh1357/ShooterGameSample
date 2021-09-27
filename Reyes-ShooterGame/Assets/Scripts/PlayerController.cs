@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public string FireAxis = "Fire1";
     public float MaxSpeed = 5f;
     private Rigidbody ThisBody = null;
-    public float ReloadDelay = 0.3f;
+    public float ReloadDelay = 0.1f;
     public bool CanFire = true;
     public Transform[] TurretTransforms;
 
@@ -43,6 +43,10 @@ public class PlayerController : MonoBehaviour
             transform.localRotation = Quaternion.LookRotation(LookDirection.normalized, Vector3.up);
         }
 
+    }
+
+    private void Update()
+    {
         if (Input.GetButtonDown(FireAxis) && CanFire)
         {
             foreach (Transform T in TurretTransforms)

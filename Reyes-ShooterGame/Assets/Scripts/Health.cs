@@ -7,6 +7,9 @@ public class Health : MonoBehaviour
     public GameObject DeathParticlesPrefab = null;
     public bool ShouldDestroyOnDeath = true;
     [SerializeField] private float _HealthPoints = 5f;
+    public GameObject HurtParticlesPrefab = null;
+    private float hurtSpaceTimer = 0.5f;
+    private float hurtSpaceMax = 0.2f;
 
     public float HealthPoints
     {
@@ -17,8 +20,12 @@ public class Health : MonoBehaviour
 
         set
         {
-
-            Debug.Log("We are setting numbers~");
+            if(HurtParticlesPrefab != null && hurtSpaceTimer >= hurtSpaceMax)
+            {
+                Instantiate(HurtParticlesPrefab, transform.position, transform.rotation);
+                hurtSpaceTimer = 0f;
+            }
+            //Debug.Log("We are setting numbers~");
             _HealthPoints = value;
             if (HealthPoints <= 0)
             {
@@ -32,6 +39,8 @@ public class Health : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
+
+            hurtSpaceTimer += Time.deltaTime;
         }
     }
     private void Update()
