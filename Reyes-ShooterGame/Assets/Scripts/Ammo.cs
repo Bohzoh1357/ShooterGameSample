@@ -19,8 +19,11 @@ public class Ammo : MonoBehaviour
         {
             return;
         }
-        H.HealthPoints -= Damage;
-        Die();
+        if (!other.gameObject.tag.Equals("Player"))
+        {
+            H.HealthPoints -= Damage;
+            Die();
+        }
     }
 
     void Die()

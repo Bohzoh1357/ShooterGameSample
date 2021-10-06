@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 601267929520068313}
   - component: {fileID: 601267929520068312}
   - component: {fileID: 6307002339538380907}
+  - component: {fileID: 6345714696524806029}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -142,6 +143,18 @@ MonoBehaviour:
   ShouldDestroyOnDeath: 1
   _HealthPoints: 5
   HurtParticlesPrefab: {fileID: 533162393586154299, guid: 49a40ccbb53a3dd4f85adc2e97ddf212, type: 3}
+--- !u!114 &6345714696524806029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601267929520068288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c85a0cbb3d84c164292a9b8b22a22803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &601267929545769742
 GameObject:
   m_ObjectHideFlags: 0
