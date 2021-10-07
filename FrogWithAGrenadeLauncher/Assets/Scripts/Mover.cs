@@ -6,6 +6,10 @@ public class Mover : MonoBehaviour
 {
     public float MaxSpeed = 10f;
 
+    private void Awake()
+    {
+        MaxSpeed = 10f;
+    }
     // Update is called once per frame
     void Update()
     {
