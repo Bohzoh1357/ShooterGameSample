@@ -5,22 +5,34 @@ using UnityEngine;
 public class ProxyFire : MonoBehaviour
 {
     private GameObject fly;
-    private Mover speed;
-    private float originalSpeed;
+    private MoverAway speedAway;
+    private Mover speedTowards;
+    public float UsualSpeed = 3f;
+    private bool triggered = false;
+    public Transform[] TurretTransforms;
+    private bool CanFire = true;
+    public float reloadDelay = 0.3f;
+
     private void Start()
     {
         fly = GetComponent<GameObject>();
-        speed = fly.GetComponent<Mover>();
+        speedAway = fly.GetComponent<MoverAway>();
+        speedTowards = fly.GetComponent<Mover>();
+        speedTowards.MaxSpeed = UsualSpeed;
+        speedAway.MaxSpeed = 0f;
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            originalSpeed = speed.MaxSpeed;
-            speed.MaxSpeed = 0;
+            speedTowards.MaxSpeed = 0;
+            speedAway.MaxSpeed = UsualSpeed;
+            triggered = false;
+            // STOP SHOOTING
         }
     }
 
+    /*
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag.Equals("Player"))
@@ -30,13 +42,36 @@ public class ProxyFire : MonoBehaviour
 
         }
     }
+    */
+
+    private void Update()
+    {
+        if (triggered && CanFire)
+        {
+            foreach (Transform T in TurretTransforms)
+            {
+                AmmoManager.SpawnAmmo(T.position, T.rotation);
+            }
+            CanFire = false;
+            Invoke("EnableFire", reloadDelay);
+
+        }
+    }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            speed.MaxSpeed = originalSpeed;
+            speedAway.MaxSpeed = 0f;
+
+            // START SHOOTING
+            triggered = true;
         }
+    }
+
+    void EnableFire()
+    {
+        CanFire = true;
     }
 
 }
