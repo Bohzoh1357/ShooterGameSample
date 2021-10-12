@@ -20,7 +20,7 @@ public class Health : MonoBehaviour
 
         set
         {
-            if(HurtParticlesPrefab != null && hurtSpaceTimer >= hurtSpaceMax)
+            if(HurtParticlesPrefab != null)
             {
                 Instantiate(HurtParticlesPrefab, transform.position, transform.rotation);
                 hurtSpaceTimer = 0f;
@@ -41,13 +41,15 @@ public class Health : MonoBehaviour
             }
 
             hurtSpaceTimer += Time.deltaTime;
+            Debug.Log("HurtsPace Timer " + hurtSpaceTimer);
         }
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            HealthPoints = 0;
-        }
-    }
+
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        HealthPoints = 0;
+    //    }
+    //}
 }

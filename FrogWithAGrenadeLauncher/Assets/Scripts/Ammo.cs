@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ammo : MonoBehaviour
 {
-    public float Damage = 100f;
+    public float Damage = 10f;
     public float LifeTime = 2f;
     private void OnEnable()
     {
@@ -19,7 +19,7 @@ public class Ammo : MonoBehaviour
         {
             return;
         }
-        if (!other.gameObject.tag.Equals("Player"))
+        if (other.gameObject.tag.Equals("Player"))
         {
             H.HealthPoints -= Damage;
             Die();

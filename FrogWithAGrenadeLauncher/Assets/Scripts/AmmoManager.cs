@@ -35,6 +35,7 @@ public class AmmoManager : MonoBehaviour
         SpawnedAmmo.gameObject.SetActive(true);
         SpawnedAmmo.position = Position;
         SpawnedAmmo.localRotation = Rotation;
+        SpawnedAmmo.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0f,0f,0f);
         AmmoManagerSingleton.AmmoQueue.Enqueue(SpawnedAmmo);
         return SpawnedAmmo;
     }

@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ProxFrog
+  - Reticle
+  - Detonate
+  - Grenade
+  - Enemy
   layers:
   - Default
   - TransparentFX

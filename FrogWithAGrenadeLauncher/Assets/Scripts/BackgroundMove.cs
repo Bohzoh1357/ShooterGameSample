@@ -9,7 +9,7 @@ public class BackgroundMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(Time.time < 45f)
+        if(Time.timeSinceLevelLoad < 45f)
         {
             transform.position -= transform.forward * backgroundSpeed * Time.deltaTime;
         }

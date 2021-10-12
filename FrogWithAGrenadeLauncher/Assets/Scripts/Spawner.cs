@@ -11,6 +11,7 @@ public class Spawner : MonoBehaviour
     private Transform Origin = null;
     public float intensify = 15;
     public int lvl = 0;
+    public float gameTime = 0f;
 
     private void Awake()
     {
@@ -25,7 +26,9 @@ public class Spawner : MonoBehaviour
 
     void Spawn()
     {
-        if(Origin == null)
+        gameTime += Interval;
+        
+        if(Origin == null || gameTime > 45f)
         {
             return;
         }

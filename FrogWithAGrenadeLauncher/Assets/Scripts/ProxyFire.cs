@@ -13,20 +13,26 @@ public class ProxyFire : MonoBehaviour
     private bool CanFire = true;
     public float reloadDelay = 0.3f;
 
+    private Transform _transform;
+
     private void Start()
     {
-        fly = GetComponent<GameObject>();
+        _transform = transform;
+        fly = transform.gameObject;
         speedAway = fly.GetComponent<MoverAway>();
         speedTowards = fly.GetComponent<Mover>();
-        speedTowards.MaxSpeed = UsualSpeed;
-        speedAway.MaxSpeed = 0f;
+        Debug.Log("Speed Towards has value " + speedTowards.MaxSpeed);
+        speedTowards.setSpeed(UsualSpeed);
+        speedAway.setSpeed(0f);
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Player"))
+        Debug.Log("enter trigger");
+        if (other.gameObject.tag.Equals("ProxFrog"))
         {
-            speedTowards.MaxSpeed = 0;
-            speedAway.MaxSpeed = UsualSpeed;
+            Debug.Log("Player hiton enter!");
+            speedTowards.setSpeed(0f);
+            speedAway.setSpeed(UsualSpeed);
             triggered = false;
             // STOP SHOOTING
         }
@@ -48,9 +54,10 @@ public class ProxyFire : MonoBehaviour
     {
         if (triggered && CanFire)
         {
+            Debug.Log("TRIGGERED AND FIRING");
             foreach (Transform T in TurretTransforms)
             {
-                AmmoManager.SpawnAmmo(T.position, T.rotation);
+                EnemyAmmoManager.SpawnAmmo(T.position, T.rotation);
             }
             CanFire = false;
             Invoke("EnableFire", reloadDelay);
@@ -60,10 +67,12 @@ public class ProxyFire : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag.Equals("Player"))
-        {
-            speedAway.MaxSpeed = 0f;
 
+        Debug.Log("exit trigger");
+        if (other.gameObject.tag.Equals("ProxFrog"))
+        {
+            Debug.Log("Player hiton exit");
+            speedAway.setSpeed(0f);
             // START SHOOTING
             triggered = true;
         }

@@ -27,10 +27,12 @@ public class PlayerController : MonoBehaviour
         float Horz = Input.GetAxis(HorzAxis);
         float Vert = Input.GetAxis(VertAxis);
         Vector3 MoveDirection = new Vector3(Horz, 0.0f, Vert);
-        ThisBody.AddForce(MoveDirection.normalized * MaxSpeed);
-        ThisBody.velocity = new Vector3(Mathf.Clamp(ThisBody.velocity.x, -MaxSpeed, MaxSpeed),
-                                        Mathf.Clamp(ThisBody.velocity.y, -MaxSpeed, MaxSpeed),
-                                        Mathf.Clamp(ThisBody.velocity.z, -MaxSpeed, MaxSpeed));
+
+        ThisBody.transform.position += MoveDirection * Time.deltaTime * MaxSpeed;
+        //ThisBody.AddForce(MoveDirection.normalized * MaxSpeed);
+        //ThisBody.velocity = new Vector3(Mathf.Clamp(ThisBody.velocity.x, -MaxSpeed, MaxSpeed),
+        //                                Mathf.Clamp(ThisBody.velocity.y, -MaxSpeed, MaxSpeed),
+        //                                Mathf.Clamp(ThisBody.velocity.z, -MaxSpeed, MaxSpeed));
 
         // Points ship towards the mouse pointer, as long as MouseLook is set.
         if (MouseLook)
